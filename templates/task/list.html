@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 {% block main %}
 <table>
+    <tr>
+        <th>Name</th>
+        <th>Frequency</th>
+        <th>Active</th>
+        <th>Edit</th>
+    </tr>
     {% for task in object_list %}
-    <tr><td>{{ task.name }}</td><td>{{ task.frequency }}</td><td>{{ task.active }}</td><td>edit | delete</td></tr>
+    <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.frequency }}</td>
+        <td>{{ task.active }}</td>
+        <td><button onclick="window.location.href='/task/edit/{{ task.id }}'">edit</button></td>
+    </tr>
     {% endfor %}
 </table>
 {% endblock %}

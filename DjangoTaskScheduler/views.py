@@ -8,7 +8,6 @@ def task_create(request: HttpRequest) -> HttpResponse:
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("saved")
             return redirect("/")
     else:
         form = TaskForm()
@@ -22,7 +21,7 @@ def task_edit(request: HttpRequest, pk: int) -> HttpResponse:
         if form.is_valid():
             print(instance)
             instance.save()
-            return HttpResponse("updated")
+            return redirect("/")
 
     else:
         form = TaskForm(instance=instance)
