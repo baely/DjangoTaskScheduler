@@ -78,8 +78,6 @@ class Run:
             module = os.path.join("tasks", str(task.id), "__init__.py")
 
             if task.active:
-                print(f"Running {task.name}")
-
                 try:
                     with stdout_io() as s:
                         start = datetime.now()
