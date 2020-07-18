@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import RedirectView
-from .models import LogList, LogView, TaskList
+from .models import LogList, LogView, TaskList, TaskView
 from .views import task_create, task_edit
 
 urlpatterns = [
     path("task/create", task_create, name="task_create"),
     path("task/edit/<int:pk>", task_edit, name="task_edit"),
+    path("task/view/<int:pk>", TaskView.as_view(), name="task_view"),
     path("task/list", TaskList.as_view(), name="task_list"),
     path("task/log", LogList.as_view(), name="log_list"),
     path("task/log/view/<int:pk>", LogView.as_view(), name="log_view"),

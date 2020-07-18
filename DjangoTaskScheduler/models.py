@@ -43,6 +43,11 @@ class TaskForm(ModelForm):
         fields = ["name", "frequency", "active", "script"]
 
 
+class TaskView(DetailView):
+    model = Task
+    template_name = "task/view.html"
+
+
 class TaskList(ListView):
     model = Task
     ordering = ["id"]

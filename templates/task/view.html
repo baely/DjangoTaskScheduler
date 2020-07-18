@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block main %}
+<table>
+    <thead>
+    <tr>
+        <th colspan="2"><a href="">{{ object.name }}</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>Frequency</td><td>{{ object.frequency }}</td></tr>
+    <tr><td>Active</td><td>{{ object.active }}</td></tr>
+    </tbody>
+</table>
+<pre>{{ object.script }}</pre>
+{% endblock %}

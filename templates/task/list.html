@@ -6,7 +6,7 @@
         <th>Name</th>
         <th>Frequency</th>
         <th>Active</th>
-        <th>Edit</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -15,7 +15,8 @@
         <td>{{ task.name }}</td>
         <td>{{ task.frequency }}</td>
         <td>{{ task.active }}</td>
-        <td><button onclick="window.location.href='/task/edit/{{ task.id }}'">edit</button></td>
+        <td><button onclick="window.location.href='/task/view/{{ task.id }}'">view</button> |
+            <button onclick="window.location.href='/task/edit/{{ task.id }}'">edit</button></td>
     </tr>
     {% endfor %}
     </tbody>
