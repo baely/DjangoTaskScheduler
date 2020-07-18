@@ -1,8 +1,12 @@
 import time
 from datetime import datetime
-import traceback
+import os
+
 
 class Run:
+    def __init__(self):
+        self.TASK = None
+
     @staticmethod
     def get_times(t1: datetime, t2: datetime) -> (bool, bool, bool, bool, bool):
         print(t1, t2)
@@ -16,11 +20,10 @@ class Run:
 
         return m, h, d, w, mo
 
-    @staticmethod
-    def main():
-        traceback.print_stack()
-
+    def main(self):
         from DjangoTaskScheduler.models import Task
+
+        self.TASK = Task
 
         t = datetime.now()
 
@@ -28,18 +31,31 @@ class Run:
             m, h, d, w, mo = Run.get_times(t, t := datetime.now())
 
             if m:
-                pass
+                self.run_tasks("MINUTE")
 
             if h:
-                pass
+                self.run_tasks("HOURLY")
 
             if d:
-                pass
+                self.run_tasks("DAILY")
 
             if w:
-                pass
+                self.run_tasks("WEEKLY")
 
             if mo:
-                pass
+                self.run_tasks("MONTHLY")
 
-            time.sleep(1)
+            time.sleep(5)
+
+    def run_tasks(self, f: str) -> None:
+        tasks = self.TASK.objects.filter(frequency=f)
+
+        for task in tasks:
+            module = os.path.join("tasks", str(task.id), "__init__.py")
+
+            print(f"Running {task.name}")
+
+            try:
+                exec(open(module).read())
+            except Exception as e:
+                print(e)

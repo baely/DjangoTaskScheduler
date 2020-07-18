@@ -29,7 +29,7 @@ class Task(Model):
 
         task_dir = os.path.join("tasks", str(self.id))
 
-        print(os.mkdir(task_dir))
+        os.mkdir(task_dir)
 
         with open(os.path.join(task_dir, "__init__.py"), "w") as f:
             f.write(self.script)
