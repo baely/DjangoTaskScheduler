@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block main %}
 <table>
+    <thead>
     <tr>
         <th>Ran</th>
         <th>Task</th>
         <th>Success</th>
     </tr>
+    </thead>
+    <tbody>
     {% for log in object_list %}
     <tr>
         <td><a href="/task/log/view/{{ log.id }}">{{ log.time | timesince }}</a></td>
@@ -13,5 +16,6 @@
         <td>{{ log.success }}</td>
     </tr>
     {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

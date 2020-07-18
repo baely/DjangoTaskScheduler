@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% block main %}
 <table>
+    <thead>
     <tr>
         <th>Name</th>
         <th>Frequency</th>
         <th>Active</th>
         <th>Edit</th>
     </tr>
+    </thead>
+    <tbody>
     {% for task in object_list %}
     <tr>
         <td>{{ task.name }}</td>
@@ -15,5 +18,6 @@
         <td><button onclick="window.location.href='/task/edit/{{ task.id }}'">edit</button></td>
     </tr>
     {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

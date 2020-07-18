@@ -7,14 +7,20 @@ import time
 from datetime import datetime
 
 
+def input():
+    return "0\n"
+
+
 @contextlib.contextmanager
 def stdout_io(stdout=None):
-    old = sys.stdout
+    old_out = sys.stdout
+
     if stdout is None:
         stdout = io.StringIO()
     sys.stdout = stdout
     yield stdout
-    sys.stdout = old
+
+    sys.stdout = old_out
 
 
 class Run:
