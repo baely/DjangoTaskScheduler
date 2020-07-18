@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load codeblock %}
 {% block main %}
 <table>
     <thead>
@@ -9,7 +10,8 @@
     <tbody>
     <tr><td>Frequency</td><td>{{ object.frequency }}</td></tr>
     <tr><td>Active</td><td>{{ object.active }}</td></tr>
+    <tr><td>Edit</td><td><button onclick="window.location.href='/task/edit/{{ object.id }}';">edit</button></td></tr>
     </tbody>
 </table>
-<pre>{{ object.script }}</pre>
+<pre>{% autoescape off %}{{ object.script|code }}{% endautoescape %}</pre>
 {% endblock %}

@@ -76,13 +76,11 @@ class Run:
         tasks = self.TASK.objects.filter(frequency=f)
 
         for task in tasks:
-            module = os.path.join("tasks", str(task.id), "__init__.py")
-
             if task.active:
                 try:
                     with stdout_io() as s:
                         start = datetime.now()
-                        exec(open(module).read())
+                        exec(task.script, globals(), locals())
                         end = datetime.now()
 
                     runtime = (end - start).microseconds

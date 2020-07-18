@@ -79,7 +79,20 @@ body {
     background-color: #222;
     border: 1px solid #000;
     color: #fff;
+    counter-reset: line;
     max-height: 540px;
     overflow-y: scroll;
     padding: 2em;
+}
+
+.main pre code::before {
+    border-right: 1px solid #ccc;
+    color: #777;
+    content: counter(line);
+    counter-increment: line;
+    display: inline-block;
+    margin: 0 1ex 0 0;
+    padding: 0 1ex 0 0;
+    text-align: right;
+    width: 3ex;
 }

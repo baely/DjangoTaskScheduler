@@ -20,7 +20,7 @@ def task_edit(request: HttpRequest, pk: int) -> HttpResponse:
         form = TaskForm(request.POST, instance=instance)
         if form.is_valid():
             instance.save()
-            return redirect("/")
+            return redirect(f"/task/view/{instance.id}")
 
     else:
         form = TaskForm(instance=instance)

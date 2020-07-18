@@ -26,17 +26,6 @@ class Task(Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        task_dir = os.path.join("tasks", str(self.id))
-
-        if not os.path.exists(task_dir):
-            os.mkdir(task_dir)
-
-        with open(os.path.join(task_dir, "__init__.py"), "w") as f:
-            f.write(self.script)
-
 
 class TaskForm(ModelForm):
     class Meta:
