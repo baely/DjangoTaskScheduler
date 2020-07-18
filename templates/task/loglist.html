@@ -13,7 +13,7 @@
     {% for log in object_list %}
     <tr>
         <td><a href="/task/log/view/{{ log.id }}">{{ log.time|timesince }} ago</a></td>
-        <td>{{ log.task.name }}</td>
+        <td><a href="/task/view/{{ log.task.id}}">{{ log.task.name }}</a></td>
         <td>{{ log.success }}</td>
         <td>{{ log.runtime }} ms</td>
     </tr>

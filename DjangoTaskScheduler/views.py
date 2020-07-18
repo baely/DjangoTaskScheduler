@@ -1,6 +1,11 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
-from .models import Task, TaskForm, TaskList
+from .models import Task, TaskForm
+
+
+def empty_return(request: HttpRequest, *args, **kwargs) -> HttpResponse:
+    message = "#TODO"
+    return render(request, "message.html", {"message": message})
 
 
 def task_create(request: HttpRequest) -> HttpResponse:

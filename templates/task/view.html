@@ -4,13 +4,15 @@
 <table>
     <thead>
     <tr>
-        <th colspan="2"><a href="">{{ object.name }}</a></th>
+        <th colspan="2">{{ object.name }}</th>
     </tr>
     </thead>
     <tbody>
     <tr><td>Frequency</td><td>{{ object.frequency }}</td></tr>
     <tr><td>Active</td><td>{{ object.active }}</td></tr>
-    <tr><td>Edit</td><td><button onclick="window.location.href='/task/edit/{{ object.id }}';">edit</button></td></tr>
+    <tr><td></td><td><button onclick="window.location.href='/task/edit/{{ object.id }}';">edit</button> |
+                     <button onclick="window.location.href='/task/run/{{ object.id }}';">run</button> |
+                     <button onclick="window.location.href='/task/log/{{ object.id }}';">log</button></td></tr>
     </tbody>
 </table>
 <pre>{% autoescape off %}{{ object.script|code }}{% endautoescape %}</pre>

@@ -15,8 +15,10 @@
         <td>{{ task.name }}</td>
         <td>{{ task.frequency }}</td>
         <td>{{ task.active }}</td>
-        <td><button onclick="window.location.href='/task/view/{{ task.id }}'">view</button> |
-            <button onclick="window.location.href='/task/edit/{{ task.id }}'">edit</button></td>
+        <td><button onclick="window.location.href='/task/view/{{ task.id }}';">view</button> |
+            <button onclick="window.location.href='/task/edit/{{ task.id }}';">edit</button> |
+            <button onclick="window.location.href='/task/run/{{ task.id }}';">run</button> |
+            <button onclick="window.location.href='/task/log/{{ task.id }}';">log</button></td>
     </tr>
     {% endfor %}
     </tbody>

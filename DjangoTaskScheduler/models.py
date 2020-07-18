@@ -66,6 +66,13 @@ class LogList(ListView):
     paginate_by = 100
     template_name = "task/loglist.html"
 
+    def get_queryset(self):
+        if "pk" in self.kwargs:
+            task = Task.objects.get(pk=self.kwargs["pk"])
+            return Log.objects.filter(task=task).order_by(*self.ordering)
+
+        return Log.objects.order_by(*self.ordering)
+
 
 class LogView(DetailView):
     model = Log
