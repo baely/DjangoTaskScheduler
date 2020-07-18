@@ -3,6 +3,7 @@ import io
 import os
 import sys
 import time
+import traceback
 
 from datetime import datetime
 
@@ -89,5 +90,9 @@ class Run:
                     log = self.LOG(task=task, runtime=runtime, message=s.getvalue())
                     log.save()
                 except Exception as e:
-                    log = self.LOG(task=task, success=False, message=e)
+                    log = self.LOG(task=task, success=False, message=traceback.format_exc())
                     log.save()
+
+
+globals()
+
