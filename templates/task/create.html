@@ -1,0 +1,4 @@
+<form action="{% url "task_create" %}" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+</form>
