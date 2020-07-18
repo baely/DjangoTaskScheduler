@@ -9,7 +9,6 @@ class Run:
 
     @staticmethod
     def get_times(t1: datetime, t2: datetime) -> (bool, bool, bool, bool, bool):
-        print(t1, t2)
         t1ts = t1.timestamp()
         t2ts = t2.timestamp()
         m = t2ts // 60 > t1ts // 60
@@ -53,9 +52,10 @@ class Run:
         for task in tasks:
             module = os.path.join("tasks", str(task.id), "__init__.py")
 
-            print(f"Running {task.name}")
+            if task.active:
+                print(f"Running {task.name}")
 
-            try:
-                exec(open(module).read())
-            except Exception as e:
-                print(e)
+                try:
+                    exec(open(module).read())
+                except Exception as e:
+                    print(e)

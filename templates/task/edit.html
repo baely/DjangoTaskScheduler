@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block main %}
+<form action="{% url 'task_edit' id %}" method="post">
+<table>
+    {{ form.as_table }}
+    {% csrf_token %}
+    <tr><td></td><td><input type="submit" value="Update"></td></tr>
+</table>
+</form>
+{% endblock %}
