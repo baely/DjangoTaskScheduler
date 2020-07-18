@@ -31,13 +31,14 @@ class Run:
     def get_times(t1: datetime, t2: datetime) -> (bool, bool, bool, bool, bool):
         t1ts = t1.timestamp()
         t2ts = t2.timestamp()
+        s = t2ts // 5 > t1ts // 5
         m = t2ts // 60 > t1ts // 60
         h = t2ts // (60*60) > t1ts // (60*60)
         d = t2ts // (60*60*24) > t1ts // (60*60*24)
         w = t2ts // (60*60*24*7) > t1ts // (60*60*24*7)
         mo = t2.month != t2.month
 
-        return m, h, d, w, mo
+        return s, m, h, d, w, mo
 
     def main(self):
         from DjangoTaskScheduler.models import Log, Task
@@ -48,7 +49,10 @@ class Run:
         t = datetime.now()
 
         while True:
-            m, h, d, w, mo = Run.get_times(t, t := datetime.now())
+            s, m, h, d, w, mo = Run.get_times(t, t := datetime.now())
+
+            if s:
+                self.run_tasks("5SECOND")
 
             if m:
                 self.run_tasks("MINUTE")

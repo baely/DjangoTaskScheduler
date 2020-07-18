@@ -7,6 +7,7 @@ import os
 
 
 FREQUENCIES = [
+    ("5SECOND", "5 Second"),
     ("MINUTE", "Minute"),
     ("HOURLY", "Hourly"),
     ("DAILY", "Daily"),
