@@ -78,9 +78,13 @@ class Run:
 
                 try:
                     with stdout_io() as s:
+                        start = datetime.now()
                         exec(open(module).read())
+                        end = datetime.now()
 
-                    log = self.LOG(task=task, message=s.getvalue())
+                    runtime = (end - start).microseconds
+
+                    log = self.LOG(task=task, runtime=runtime, message=s.getvalue())
                     log.save()
                 except Exception as e:
                     log = self.LOG(task=task, success=False, message=e)

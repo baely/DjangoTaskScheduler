@@ -22,8 +22,8 @@ from .views import task_create, task_edit
 urlpatterns = [
     path("task/create", task_create, name="task_create"),
     path("task/edit/<int:pk>", task_edit, name="task_edit"),
-    path("task/list", TaskList.as_view(template_name="task/list.html"), name="task_list"),
-    path("task/log", LogList.as_view(template_name="task/loglist.html"), name="log_list"),
-    path("task/log/view/<int:pk>", LogView.as_view(template_name="task/logview.html"), name="log_view"),
+    path("task/list", TaskList.as_view(), name="task_list"),
+    path("task/log", LogList.as_view(), name="log_list"),
+    path("task/log/view/<int:pk>", LogView.as_view(), name="log_view"),
     path("", RedirectView.as_view(pattern_name="task_list", permanent=True))
 ]

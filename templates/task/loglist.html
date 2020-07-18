@@ -6,16 +6,27 @@
         <th>Ran</th>
         <th>Task</th>
         <th>Success</th>
+        <th>Runtime</th>
     </tr>
     </thead>
     <tbody>
     {% for log in object_list %}
     <tr>
-        <td><a href="/task/log/view/{{ log.id }}">{{ log.time | timesince }}</a></td>
+        <td><a href="/task/log/view/{{ log.id }}">{{ log.time|timesince }} ago</a></td>
         <td>{{ log.task.name }}</td>
         <td>{{ log.success }}</td>
+        <td>{{ log.runtime }} ms</td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+<div class="pag">
+    Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ page_obj.paginator.count }}
+{% if page_obj.has_previous %}
+    <a href="/task/log?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+{% if page_obj.has_next %}
+    <a href="/task/log?page={{ page_obj.next_page_number }}">Next</a>
+{% endif %}
+</div>
 {% endblock %}

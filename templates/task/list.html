@@ -20,4 +20,13 @@
     {% endfor %}
     </tbody>
 </table>
+<div class="pag">
+    Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of {{ page_obj.paginator.count }}
+{% if page_obj.has_previous %}
+    <a href="/task/list?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+{% if page_obj.has_next %}
+    <a href="/task/list?page={{ page_obj.next_page_number }}">Next</a>
+{% endif %}
+</div>
 {% endblock %}

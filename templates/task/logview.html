@@ -7,9 +7,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr><td>Ran</td><td>{{ object.time | timesince}}</td></tr>
+    <tr><td>Ran</td><td>{{ object.time | timesince}} ago</td></tr>
     <tr><td>Success</td><td>{{ object.success }}</td></tr>
-    <tr><td>Message</td><td class="code">{{ object.message }}</td></tr>
+    <tr><td>Runtime</td><td>{{ object.runtime }} ms</td></tr>
     </tbody>
 </table>
+<pre>{{ object.message }}</pre>
 {% endblock %}

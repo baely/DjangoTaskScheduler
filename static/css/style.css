@@ -1,6 +1,5 @@
 a:link, a:visited, a:hover, a:active {
     color: inherit;
-    text-decoration: none;
 }
 
 body {
@@ -50,6 +49,9 @@ body {
 .main table {
     border: 1px solid #000;
     border-collapse: collapse;
+    display: inline-block;
+    max-height: calc(100vh - 144px);
+    overflow-y: scroll;
 }
 
 .main table thead {
@@ -69,10 +71,15 @@ body {
    text-decoration: underline;
 }
 
-.main .code {
-    /*background-color: #103;*/
-    /*color: #fff;*/
-    font-family: monospace;
-    /*padding: 1px;*/
-    white-space: pre;
+.main .pag {
+    margin: 24px 0 0;
+}
+
+.main pre {
+    background-color: #222;
+    border: 1px solid #000;
+    color: #fff;
+    max-height: 540px;
+    overflow-y: scroll;
+    padding: 2em;
 }
