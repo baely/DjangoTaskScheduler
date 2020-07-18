@@ -1,6 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
-from .models import Task, TaskForm
+from .models import Task, TaskForm, TaskList
 
 
 def task_create(request: HttpRequest) -> HttpResponse:
@@ -27,3 +27,9 @@ def task_edit(request: HttpRequest, pk: int) -> HttpResponse:
     else:
         form = TaskForm(instance=instance)
         return render(request, "task/edit.html", {"form": form, "id": instance.id})
+
+
+def task_list(request: HttpRequest) -> HttpResponse:
+    loo = TaskList.as_view()
+
+    return loo

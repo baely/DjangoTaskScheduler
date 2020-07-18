@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import task_create, task_edit
+from django.views.generic.base import RedirectView
+from .models import TaskList
+from .views import task_create, task_edit, task_list
 
 urlpatterns = [
     path("task/create", task_create, name="task_create"),
-    path("task/edit/<int:pk>", task_edit, name="task_edit")
+    path("task/edit/<int:pk>", task_edit, name="task_edit"),
+    path("task/list", TaskList.as_view(template_name="task/list.html"), name="task_list"),
+    path("", RedirectView.as_view(pattern_name="task_list", permanent=True))
 ]

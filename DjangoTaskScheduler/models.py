@@ -1,5 +1,6 @@
 from django.db.models import Model, AutoField, BooleanField, CharField, ForeignKey, TextField, CASCADE
 from django.forms import ModelForm
+from django.views.generic import ListView
 
 import os
 
@@ -38,4 +39,9 @@ class Task(Model):
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ["name", "frequency", "script"]
+        fields = ["name", "frequency", "active", "script"]
+
+
+class TaskList(ListView):
+    model = Task
+    paginate_by = 20
