@@ -8,6 +8,7 @@ def task_create(request: HttpRequest) -> HttpResponse:
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
+            return HttpResponse("saved")
             return redirect("/")
     else:
         form = TaskForm()

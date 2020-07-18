@@ -1,4 +1,9 @@
-<form action="{% url "task_create" %}" method="post">
-    {{ form.as_p }}
+{% block main %}
+<form action="{% url 'task_create' %}" method="post">
+<table>
+    {{ form.as_table }}
     {% csrf_token %}
+    <tr><td></td><td><input type="submit" value="Create"></td></tr>
+</table>
 </form>
+{% endblock %}
