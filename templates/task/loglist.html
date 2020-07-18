@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block main %}
+<table>
+    <tr>
+        <th>Ran</th>
+        <th>Task</th>
+        <th>Success</th>
+    </tr>
+    {% for log in object_list %}
+    <tr>
+        <td><a href="/task/log/view/{{ log.id }}">{{ log.time | timesince }}</a></td>
+        <td>{{ log.task.name }}</td>
+        <td>{{ log.success }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

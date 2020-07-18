@@ -1,6 +1,7 @@
-from django.db.models import Model, AutoField, BooleanField, CharField, ForeignKey, TextField, CASCADE
+from django.db.models import Model, AutoField, BooleanField, CharField, DateTimeField, ForeignKey, TextField, CASCADE
 from django.forms import ModelForm
-from django.views.generic import ListView
+from django.utils import timezone
+from django.views.generic import DetailView, ListView
 
 import os
 
@@ -44,4 +45,29 @@ class TaskForm(ModelForm):
 
 class TaskList(ListView):
     model = Task
+    ordering = ["id"]
     paginate_by = 20
+
+
+class Log(Model):
+    id = AutoField(primary_key=True)
+    time = DateTimeField()
+    task = ForeignKey(Task, on_delete=CASCADE)
+    success = BooleanField(default=True)
+    message = TextField()
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.time = timezone.now()
+
+        return super().save(*args, **kwargs)
+
+
+class LogList(ListView):
+    model = Log
+    ordering = ["-id"]
+    paginate_by = 100
+
+
+class LogView(DetailView):
+    model = Log

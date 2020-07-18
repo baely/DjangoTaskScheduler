@@ -1,6 +1,20 @@
-import time
-from datetime import datetime
+import contextlib
+import io
 import os
+import sys
+import time
+
+from datetime import datetime
+
+
+@contextlib.contextmanager
+def stdout_io(stdout=None):
+    old = sys.stdout
+    if stdout is None:
+        stdout = io.StringIO()
+    sys.stdout = stdout
+    yield stdout
+    sys.stdout = old
 
 
 class Run:
@@ -20,8 +34,9 @@ class Run:
         return m, h, d, w, mo
 
     def main(self):
-        from DjangoTaskScheduler.models import Task
+        from DjangoTaskScheduler.models import Log, Task
 
+        self.LOG = Log
         self.TASK = Task
 
         t = datetime.now()
@@ -56,6 +71,11 @@ class Run:
                 print(f"Running {task.name}")
 
                 try:
-                    exec(open(module).read())
+                    with stdout_io() as s:
+                        exec(open(module).read())
+
+                    log = self.LOG(task=task, message=s.getvalue())
+                    log.save()
                 except Exception as e:
-                    print(e)
+                    log = self.LOG(task=task, success=False, message=e)
+                    log.save()

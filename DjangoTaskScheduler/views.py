@@ -19,16 +19,9 @@ def task_edit(request: HttpRequest, pk: int) -> HttpResponse:
     if request.method == "POST":
         form = TaskForm(request.POST, instance=instance)
         if form.is_valid():
-            print(instance)
             instance.save()
             return redirect("/")
 
     else:
         form = TaskForm(instance=instance)
         return render(request, "task/edit.html", {"form": form, "id": instance.id})
-
-
-def task_list(request: HttpRequest) -> HttpResponse:
-    loo = TaskList.as_view()
-
-    return loo

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block main %}
+<table>
+    <tr><td>Ran</td><td>{{ object.time | timesince}}</td></tr>
+    <tr><td>Task</td><td>{{ object.task.name }}</td></tr>
+    <tr><td>Success</td><td>{{ object.success }}</td></tr>
+    <tr><td>Message</td><td><pre>{{ object.message }}</pre></td></tr>
+</table>
+{% endblock %}
